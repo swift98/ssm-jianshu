@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.ICollectDao">
+
+    <select id="getMyCollect" parameterType="int" resultType="Collect">
+        select * from collect where userid=#{userid}
+    </select>
+
+    <insert id="addCollect">
+        insert into collect(userid, fid) values (#{0}, #{1})
+    </insert>
+
+    <delete id="deleteCollect">
+        delete from collect where userid=#{0} and fid=#{1}
+    </delete>
+
+    <delete id="deleteCollectByFid" parameterType="int">
+        delete from collect where fid=#{fid}
+    </delete>
+
+</mapper>

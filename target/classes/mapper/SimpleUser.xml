@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.ISimpleUserDao" >
+    <select id="getSimpleUser" resultType="SimpleUser">
+        select * from user where name=#{0} and password=#{1}
+    </select>
+
+    <insert id="register">
+        insert into user(name, password, email) values(#{0}, #{1}, #{2})
+    </insert>
+</mapper>

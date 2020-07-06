@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.IViaDao" >
+  <insert id="addVia">
+      insert into via(userid, photo) values(#{0}, #{1})
+  </insert>
+
+    <update id="updateVia">
+        update via set photo=#{1} where userid=#{0}
+    </update>
+</mapper>

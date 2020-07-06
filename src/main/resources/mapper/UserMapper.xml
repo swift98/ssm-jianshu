@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.IUserDao" >
+    <select id="getUserById" parameterType="int" resultType="com.swift.bean.User">
+        select u.userid as userid, u.name as name, u.age as age,
+         u.sex as sex, u.email as email, u.password as password, u.family as family,
+         u.intro as intro, u.time as time, v.photo as photo from user u, via v
+          where u.userid=#{userid} and v.userid=#{userid}
+    </select>
+
+    <select id="getUserByNamePwd" resultType="com.swift.bean.SimpleUser">
+        select * from user where name=#{name} and password=#{pwd}
+    </select>
+
+    <select id="getMyFocus" parameterType="int" resultType="com.swift.bean.User">
+        select u.userid as userid, u.name as name, u.age as age,
+         u.sex as sex, u.email as email, u.password as password, u.family as family,
+         u.intro as intro, u.time as time, v.photo as photo from user u, via v
+          where u.userid in (select beuserid from attention where userid=#{userid}) and v.userid= u.userid
+    </select>
+
+    <select id="getMyFans" parameterType="int" resultType="com.swift.bean.User">
+        select u.userid as userid, u.name as name, u.age as age,
+         u.sex as sex, u.email as email, u.password as password, u.family as family,
+         u.intro as intro, u.time as time, v.photo as photo from user u, via v
+          where u.userid in (select userid from attention where beuserid=#{userid}) and v.userid= u.userid
+    </select>
+
+    <select id="login" resultType="com.swift.bean.User">
+        select u.userid as userid, u.name as name, u.age as age,
+         u.sex as sex, u.email as email, u.password as password, u.family as family,
+         u.intro as intro, u.time as time, v.photo as photo from user u, via v
+          where u.name=#{0} and u.password=#{1} and u.userid = v.userid
+    </select>
+
+    <update id="updateUser">
+        update user set name=#{1},age=#{2},sex=#{3},password=#{4},email=#{5},family=#{6},intro=#{7}
+        where userid=#{0}
+    </update>
+</mapper>

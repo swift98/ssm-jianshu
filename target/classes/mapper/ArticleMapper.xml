@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.IArticleDao">
+    <select id="getArticles" resultType="com.swift.bean.Article">
+        select * from article
+    </select>
+
+    <select id="getArticle" resultType="Article" parameterType="int">
+        select * from article where fid=#{fid}
+    </select>
+
+    <select id="getMyArticle" resultType="Article" parameterType="int">
+        select * from article where userid=#{userid}
+    </select>
+
+    <select id="getMyCommentArticle" resultType="Article" parameterType="int">
+        SELECT * FROM article where fid in (select fid from comment where userid=#{userid})
+    </select>
+
+    <select id="getMyCollect" resultType="Article" parameterType="int">
+        SELECT * FROM article where fid in (select fid from collect where userid=#{userid})
+    </select>
+
+    <select id="getPlateArticle" parameterType="String" resultType="Article">
+        select * from article where bname=#{bname}
+    </select>
+
+    <insert id="addArticle">
+        insert into article(titles, fcontent, photo, bname, userid, username,status)
+        values (#{0}, #{1}, #{2}, #{3}, #{4}, #{5},#{6})
+    </insert>
+
+    <update id="updateArticle">
+        update article set titles=#{1}, fcontent=#{2}, photo=#{3}, bname=#{4}, userid=#{5}, username=#{6}
+        where fid=#{0}
+    </update>
+
+    <select id="getArticleByTitle" resultType="Article" parameterType="String">
+        select * from article where article.titles like "%" #{title} "%"
+    </select>
+
+    <delete id="deleteArticle" parameterType="int">
+        delete from article where fid=#{fid}
+    </delete>
+</mapper>

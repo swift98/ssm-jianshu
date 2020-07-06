@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.IPlateDao">
+   <select id="getAllPlate" resultType="Plate">
+       select * from plate
+   </select>
+
+    <select id="getPlateById" parameterType="int" resultType="Plate">
+        select * from plate where bid=#{bid}
+    </select>
+</mapper>

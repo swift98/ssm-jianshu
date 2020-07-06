@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.IUser_Comment_Dao" >
+    <select id="getCommentUserList" resultType="com.swift.bean.User_Comment" parameterType="int">
+        select
+        c.pid as pid, c.pcontent as pcontent, c.userid as userid, c.fid as fid, c.time as time, u.name as username, v.photo as photo
+        from comment c,user u, via v
+        where u.userid = c.userid and u.userid = v.userid
+        and fid=#{fid}
+    </select>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.swift.dao.IFocusDao">
+
+    <select id="getMyFocus" parameterType="int" resultType="Focus">
+        select * from attention where userid=#{userid}
+    </select>
+
+    <insert id="addFocus">
+        insert into attention(userid, beuserid) values (#{0}, #{1})
+    </insert>
+
+    <delete id="deleteFocus">
+        delete from attention where userid=#{0} and beuserid=#{1}
+    </delete>
+
+</mapper>
